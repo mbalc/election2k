@@ -17,6 +17,7 @@ body {
     font-size: 18px;
     background: $elem;
     border-radius: 3px 6px 6px 3px;
+    margin-bottom: 2vh;
     p {
       margin: 9px 0;
     }
@@ -69,6 +70,10 @@ header {
     margin: 0;
     font-variant: small-caps;
     font-weight: bolder;
+  }
+
+  h4 {
+    margin-top: 4vh;
   }
 }
 
