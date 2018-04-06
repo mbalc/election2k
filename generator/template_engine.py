@@ -1,5 +1,3 @@
-from Tools.scripts.treesync import create_directories
-
 from django.template import Context
 from django.utils.safestring import mark_safe
 from django.template.engine import Engine
@@ -15,42 +13,43 @@ settings.configure()
 ### musi się validować w pylint/
 ### mogłoby w mypy
 
-e = Engine(dirs=["."])
+ENGINE = Engine(dirs=["."])
 
-template = open(consts.template_path, 'r').read()
-t = e.from_string(template)
+TEMPLATE = open(consts.TEMPLATE_PATH, 'r').read()
+HTML_TEMPLATE = ENGINE.from_string(TEMPLATE)
 
-make_field = lambda pole: """<td>""" + str(pole) + """</td>"""
+MAKE_FIELD = lambda pole: """<td>""" + str(pole) + """</td>"""
 
-make_link = lambda path, title: '<li><a href="' + path + '/index.html">' + str(title) + '</a></li>'
-make_proc = lambda num: str(100 * num)[:config.proc_precision] + ' %'
+MAKE_LINK = lambda path, title: '<li><a href="' + path + '/index.html">' + str(title) + '</a></li>'
+MAKE_PROC = lambda num: str(100 * num)[:config.PROC_PRECISION] + ' %'
 
 
 def create_webpage(args, link, pathdata):
     [uprawnieni, wydane, oddane, niewazne, wazne] = args[:5]
 
-    kandydaci = list(map(make_field, consts.kandydaci))
-    glosy = list(map(make_field, args[5:]))
+    kandydaci = list(map(MAKE_FIELD, consts.KANDYDACI))
+    glosy = list(map(MAKE_FIELD, args[5:]))
     wszystkie = sum(args[5:])
-    procenty = list(map(lambda x: make_field(make_proc(x / wszystkie)), args[5:]))
+    procenty = list(map(lambda x: MAKE_FIELD(MAKE_PROC(x / wszystkie)), args[5:]))
 
     wyniki = ''
     for a, b, c in zip(kandydaci, glosy, procenty):
         wyniki += """<tr>""" + a + b + c + """</tr>"""
 
 
-    [subdirlist, subpath] = pathdata
+    # [subdirlist, subpath] = pathdata
+    [subdirlist] = pathdata
 
     path_index = len(subdirlist) + 1
-    linker = lambda sub: make_link(
-        consts.format_folder_names[path_index](sub), consts.format_button_names[path_index](sub))
+    linker = lambda sub: MAKE_LINK(
+        consts.FORMAT_FOLDER_NAMES[path_index](sub), consts.FORMAT_BUTTON_NAMES[path_index](sub))
 
-    links = "<nav><ul>"
+    links = '<nav class="content"><ul>'
     for a in map(linker, sorted(link)):
         links += a
     links += "</ul></nav>"
 
-    style_path = ('../' * (len(subdirlist) - 1)) + consts.stylesheet_name
+    style_path = ('../' * (len(subdirlist) - 1)) + consts.STYLESHEET_NAME
 
     print(pathdata)
 
@@ -62,9 +61,9 @@ def create_webpage(args, link, pathdata):
         'niewazne': niewazne,
         'wyniki': mark_safe(wyniki),
         'style_path': style_path,
-        'frekwencja': make_proc((wazne + niewazne) / uprawnieni),
+        'frekwencja': MAKE_PROC((wazne + niewazne) / uprawnieni),
         'args': args,
         'links': mark_safe(links),
     })
 
-    return t.render(c)
+    return HTML_TEMPLATE.render(c)

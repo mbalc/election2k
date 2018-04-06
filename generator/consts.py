@@ -1,4 +1,4 @@
-zal1 = {
+ZAL1 = {
     'first_row': 6,
     'last_row': 90,
     'columns': {
@@ -8,28 +8,28 @@ zal1 = {
     },
 }
 
-project_root = '..'
+PROJECT_ROOT = '..'
 
-obw_path = project_root + '/data/obwody/'
-example = 'obw01.xls'
+OBW_PATH = PROJECT_ROOT + '/data/obwody/'
+EXAMPLE = 'obw01.xls'
 
-gen_path = project_root + '/output'
+GEN_PATH = PROJECT_ROOT + '/output'
 
-template_dir = project_root + '/templates'
-template_path = template_dir + '/main.html'
+TEMPLATE_DIR = PROJECT_ROOT + '/templates'
+TEMPLATE_PATH = TEMPLATE_DIR + '/main.html'
 
-stylesheet_name = 'stylesheet.css'
-stylesheet_path = template_dir + stylesheet_name
+STYLESHEET_NAME = 'stylesheet.css'
+STYLESHEET_PATH = TEMPLATE_DIR + STYLESHEET_NAME
 
-path_indices = [2,0,1,5,7]
-args_indices = list(range(10, 27))
+PATH_INDICES = [2, 0, 1, 5, 7]
+ARGS_INDICES = list(range(10, 27))
 
-depth = len(path_indices)
+DEPTH = len(PATH_INDICES)
 
 ISO = 'iso-8859-1'
 UTF = 'utf-8'
 
-kandydaci = [
+KANDYDACI = [
     "GRABOWSKI Dariusz",
     "IKONOWICZ Piotr",
     "KALINOWSKI Jarosław",
@@ -44,7 +44,7 @@ kandydaci = [
     "WILECKI Tadeusz",
 ]
 
-format_folder_names = [
+FORMAT_FOLDER_NAMES = [
     lambda i: i,
     lambda i: i,
     lambda i: i,
@@ -53,7 +53,7 @@ format_folder_names = [
     lambda i: str(int(float(i))),
 ]
 
-format_button_names = [
+FORMAT_BUTTON_NAMES = [
     lambda i: i,
     lambda i: i,
     lambda i: i,
@@ -62,5 +62,5 @@ format_button_names = [
     lambda i: 'Okręg ' + str(int(float(i))),
 ]
 
-nameof_wojewodztwo = lambda name: 'Woj. ' + name.lower()
-nameof_okreg = lambda siedziba, nr_okr: siedziba + '(okręg nr ' + str(int(nr_okr)) + ')'
+NAMEOF_WOJEWODZTWO = lambda name: 'Woj. ' + name.lower()
+NAMEOF_OKREG = lambda siedziba, nr_okr: siedziba + '(okręg nr ' + str(int(nr_okr)) + ')'

@@ -10,8 +10,8 @@ import consts
 def fetch_mappings():
     zal1 = xlrd.open_workbook('../data/zal1.xls', 'r').sheet_by_name('Zal1')
 
-    first_row, last_row = (consts.zal1[k] for k in ('first_row', 'last_row'))
-    nr_okr, siedziba = (consts.zal1['columns'][k] for k in ('nr_okr', 'siedziba'))
+    first_row, last_row = (consts.ZAL1[k] for k in ('first_row', 'last_row'))
+    nr_okr, siedziba = (consts.ZAL1['columns'][k] for k in ('nr_okr', 'siedziba'))
 
     output = { 'województwa': {}, 'okręgi': {}}
 
@@ -21,8 +21,8 @@ def fetch_mappings():
     wojewodztwo_prefix = get_nr_okr(first_row)
     last_wojewodztwo = ''
 
-    def nameof_wojewodztwo(): return consts.nameof_wojewodztwo(last_wojewodztwo)
-    nameof_okreg = lambda row: consts.nameof_okreg(get_siedziba(row), get_nr_okr(row))
+    def nameof_wojewodztwo(): return consts.NAMEOF_WOJEWODZTWO(last_wojewodztwo)
+    nameof_okreg = lambda row: consts.NAMEOF_OKREG(get_siedziba(row), get_nr_okr(row))
 
     woj = 2
 
@@ -48,7 +48,7 @@ def make_join():
     get_woj_code = re.compile(r'^[0-9]{2}')
 
     for i in range(1, 69):
-        source = xlrd.open_workbook(consts.obw_path + 'obw%02d.xls' % i, 'r').sheet_by_index(0)
+        source = xlrd.open_workbook(consts.OBW_PATH + 'obw%02d.xls' % i, 'r').sheet_by_index(0)
         for i in range(1, source.nrows):
             row += 1
             for j in range(source.ncols):
