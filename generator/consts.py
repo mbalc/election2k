@@ -6,17 +6,6 @@ zal1 = {
         'siedziba': 1,
         'last_col': 10,
     },
-    'headers': [
-        'Liczba obwodów głosowania',
-        'Liczba uprawnionych do głosowania',
-		'Liczba wydanych kart do głosowania',
-        'Procent wydanych kart do głosowania (frekwencja)',
-        'Liczba oddanych głosów',
-        'Liczba głosów ważnych',
-        'Procent głosów ważnych',
-        'Liczba głosów nieważnych',
-        'Procent głosów nieważnych',
-     ]
 }
 
 project_root = '..'
@@ -26,18 +15,51 @@ example = 'obw01.xls'
 
 gen_path = project_root + '/output'
 
-path_indices = [0,1,4,6]
-args_indices = list(range(9, 11))
+template_dir = project_root + '/templates'
+template_path = template_dir + '/main.html'
 
-depth = 5
+stylesheet_name = 'stylesheet.css'
+stylesheet_path = template_dir + stylesheet_name
 
+path_indices = [2,0,1,5,7]
+args_indices = list(range(10, 27))
 
-format_folder_names = [  # TODO
+depth = len(path_indices)
+
+ISO = 'iso-8859-1'
+UTF = 'utf-8'
+
+kandydaci = [
+    "GRABOWSKI Dariusz",
+    "IKONOWICZ Piotr",
+    "KALINOWSKI Jarosław",
+    "KORWIN-MIKKE Janus",
+    "KRZAKLEWSKI Maria",
+    "KWAŚNIEWSKI Aleksander",
+    "LEPPER Andrzej",
+    "ŁOPUSZAŃSKI Jan",
+    "OLECHOWSKI Andrzej",
+    "PAWŁOWSKI Bogdan",
+    "WAŁĘSA Lech",
+    "WILECKI Tadeusz",
+]
+
+format_folder_names = [
+    lambda i: i,
     lambda i: i,
     lambda i: i,
     lambda i: i,
     lambda i: i,
     lambda i: str(int(float(i))),
+]
+
+format_button_names = [
+    lambda i: i,
+    lambda i: i,
+    lambda i: i,
+    lambda i: i,
+    lambda i: i,
+    lambda i: 'Okręg ' + str(int(float(i))),
 ]
 
 nameof_wojewodztwo = lambda name: 'Woj. ' + name.lower()

@@ -25,19 +25,16 @@ body {
 a {
   color: #444; }
 
-@media (min-width: 800px) {
+@media (min-width: 850px) {
   main {
     column-count: 2; } }
-@media (min-width: 2000px) {
-  main {
-    column-count: 3; } }
 article {
   overflow: hidden;
   margin: 0 8px;
   max-width: 960px; }
 
 main {
-  max-width: calc(1000px * 3);
+  max-width: calc(1000px * 2);
   margin: 15px auto; }
 
 header h1, header h4 {

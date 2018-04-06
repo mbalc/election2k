@@ -1,33 +1,44 @@
-# from Tools.scripts.treesync import create_directories
-#
-# from django.template import Context
-# from django.template.engine import Engine
-# from django.conf import settings
-# from config import configuration
-
-import xlrd, os, numpy
+import os
+import xlrd
+import numpy
 
 import consts
-
+import config
+import template_engine
 
 main = xlrd.open_workbook('../data/fullOuterJoin.xls', 'r').sheet_by_index(0)
 
-get_getter = lambda indices, rett: lambda row: list(map(lambda i: rett(main.cell_value(row, i)), indices))
-get_path_list = get_getter(consts.path_indices, lambda i: i)
-get_args_list = get_getter(consts.args_indices, lambda i: int(i))
+GET_GETTER = (lambda indices, rett: (
+    lambda row: (
+        list(map(
+            lambda i: (
+                rett(main.cell_value(row, i))
+            )
+            , indices
+        ))
+    )
+))
 
-path_list = get_path_list(0)
+GET_PATH_LIST = GET_GETTER(consts.path_indices, lambda i: i)
+GET_ARGS_LIST = GET_GETTER(consts.args_indices, lambda i: int(i))
 
-empty_args_aggr = numpy.zeros(len(consts.args_indices)),
-empty_set = set()
+PATH_LIST = GET_PATH_LIST(0)
 
-args_aggr = [empty_args_aggr] * 4
-link_aggr = [set(), set(), set(), set(), set()]
+def emprt_args_aggr():
+    return numpy.zeros(len(consts.args_indices), dtype='int')
+
+
+ARGS_AGGR = []
+for les in range(consts.depth):
+    ARGS_AGGR.append(emprt_args_aggr())
+LINK_AGGR = [set(), set(), set(), set(), set(), set()]
+
 
 def create_directory(path):
+    """Creates folders that lead to path specified by argument and return path string"""
     aggr = ''
 
-    for elem, formatter in zip([consts.gen_path] + path, consts.format_folder_names):
+    for elem, formatter in zip([consts.gen_path] + path[1:], consts.format_folder_names[1:]):
         aggr += formatter(elem) + '/'
 
         if not os.path.isdir(aggr):
@@ -35,58 +46,45 @@ def create_directory(path):
 
     return aggr
 
-def write_template(path, args):
-    f = open(path + "index.html", 'w')
-    f.write('This is test\n' + str(args))
-
 
 def process_single(new_path, row):
-    global path_list, args_aggr, link_aggr
+    """Processes single row of the xls file and generates necessary html files"""
+    global PATH_LIST, ARGS_AGGR, LINK_AGGR
 
-    args_list = get_args_list(row)
+    args_list = GET_ARGS_LIST(row)
 
-    for i in reversed(range(4)):
-        if path_list[i] == new_path[i]: break
-        write_template(create_directory(path_list[:i+1]), [args_aggr[i], link_aggr[i + 1]])
-        args_aggr[i] = empty_args_aggr
-        link_aggr[i + 1] = set()
+    for i in reversed(range(consts.depth)):
+        if PATH_LIST[i] == new_path[i]:
+            break
 
-    for i in range(4): args_aggr[i] += numpy.asarray(args_list)
-    for i in range(4): link_aggr[i].add(consts.format_folder_names[i](new_path[i]))
+        subdirlist = PATH_LIST[:i + 1]
+        subpath = create_directory(subdirlist)
 
-    path_list = new_path
-    print(args_aggr, link_aggr)
+        output = template_engine.create_webpage(ARGS_AGGR[i], LINK_AGGR[i], [subdirlist, subpath])
+        # print('out: ', output)
+        file = open(subpath + "index.html", 'wb')
+        file.write(output.encode(consts.UTF))
+
+        ARGS_AGGR[i] = emprt_args_aggr()
+        LINK_AGGR[i] = set()
+
+    nparr = numpy.asarray(args_list)
+    # print(nparr, ARGS_AGGR[0], ARGS_AGGR[0]+nparr)
+
+    for i in range(consts.depth):
+        # print(i, '-', ARGS_AGGR[i] + numpy.asarray(args_list))
+        ARGS_AGGR[i] += nparr
+    for i in range(consts.depth - 1):
+        LINK_AGGR[i].add(consts.format_folder_names[i](new_path[i + 1]))
+
+    PATH_LIST = new_path
+
 
 # write_template(create_directory(path_list), [])
 
-for i in range(14): process_single(get_path_list(i), i)
-process_single(['', '', '', '', ''], i)
+NROWS = config.how_many_rows(main.nrows)
 
-# print(args_aggr, link_aggr)
-
-# settings.configure()
-#
-# ### musi się validować w pylint
-# ### mogłoby w mypy
-#
-# e = Engine(dirs=["."])
-#
-# t = e.from_string("""
-# {% block b1 %}
-# Szablon
-# {{zmienna}}
-# {% for i in lista \
-# %} {{i}}
-# {% endfor %}
-# {% endblock %}
-# """)
-#
-# c = Context(configuration)
-#
-# s = t.render(c)
-# # print(s)
-#
-# def f(x:str):
-#     print(x)
-#
-# # f(10)
+for row_num in range(NROWS):
+    # print(row_num, ": ", ARGS_AGGR)
+    process_single(GET_PATH_LIST(row_num), row_num)
+process_single(['dynks'] * consts.depth, NROWS - 1)

@@ -1,14 +1,16 @@
+ <!DOCTYPE html>
+
 <html>
 
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Wybory Prezydenta Rzeczypospolitej Polskiej 2000</title>
 
     <!--Google Fonts - source: https://fonts.google.com/specimen/Open+Sans?selection.family=Raleway:100,900-->
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,900&amp;subset=latin-ext" rel="stylesheet">
 
     <!--Custom stylesheet for fine tuning appearance -->
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="{{style_path}}">
 
     <script type="text/javascript"
             src="https://cdn.rawgit.com/tofsjonas/sortable/master/sortable.min.js"></script>
@@ -24,163 +26,82 @@
 </header>
 
 <main>
+    <article>
+        <header>
+            <h4>Linki</h4>
+            <hr/>
+        </header>
+        <!--<figure>-->
+            <!--<img src="Wybory%20Prezydenta%20Rzeczypospolitej%20Polskiej%202000_files/pwf.gif" alt="Mapka">-->
+            <!--<img src="Wybory%20Prezydenta%20Rzeczypospolitej%20Polskiej%202000_files/31.png" alt="Legenda">-->
+        <!--</figure>-->
+        {{links}}
+    </article>
+
+    <article>
+
+        <header>
+            <h4>Statystyka ogĂłĹem</h4>
+            <hr/>
+        </header>
+        <table>
+            <tbody>
+            <tr>
+                <th>Liczba uprawnionych do gĹosowania</th>
+                <td>{{uprawnieni}}</td>
+            </tr>
+            <tr>
+                <th>Liczba wydanych kart do gĹosowania</th>
+                <td>{{wydane}}</td>
+            </tr>
+            <tr>
+                <th>Liczba kart wyjÄtych z urny</th>
+                <td>{{oddane}}</td>
+            </tr>
+            <tr>
+                <th>Liczba waĹźnych gĹosĂłw</th>
+                <td>{{wazne}}</td>
+            </tr>
+            <tr>
+                <th>Liczba niewaĹźnych gĹosĂłw</th>
+                <td>{{niewazne}}</td>
+            </tr>
+            <tr>
+                <th>Frekwencja</th>
+                <td>{{frekwencja}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
 
     <article>
         <header>
-            <h4>Wyniki poszczególnych kandydatów</h4>
+            <h4>Wyniki poszczegĂłlnych kandydatĂłw</h4>
             <hr/>
         </header>
         <table class="sortable">
             <thead>
             <tr>
                 <th>Kandydat</th>
-                <th>Liczba głosów oddanych na kandydata</th>
-                <th>Procentowa liczba głosów oddanych na kandydata</th>
+                <th>Liczba gĹosĂłw oddanych na kandydata</th>
+                <th>Procentowa liczba gĹosĂłw oddanych na kandydata</th>
             </tr>
             </thead>
             <!--<separator />-->
             <tbody>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/grabowski_dariusz/wb_kd.html">GRABOWSKI Dariusz</a></td>
-                <td>89 002</td>
-                <td>0,51</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/ikonowicz_piotr/wb_kd.html">IKONOWICZ Piotr</a></td>
-                <td>38 672</td>
-                <td>0,22</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/kalinowski_jaroslaw/wb_kd.html">KALINOWSKI Jarosław</a>
-                </td>
-                <td>1 047 949</td>
-                <td>5,95</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/korwin-mikke_janusz/wb_kd.html">KORWIN-MIKKE Janusz</a>
-                </td>
-                <td>252 499</td>
-                <td>1,43</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/krzaklewski_marian/wb_kd.html">KRZAKLEWSKI Marian</a>
-                </td>
-                <td>2 739 621</td>
-                <td>15,57</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/kwasniewski_aleksander/wb_kd.html">KWAŚNIEWSKI
-                    Aleksander</a></td>
-                <td>9 485 224</td>
-                <td>53,90</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/lepper_andrzej/wb_kd.html">LEPPER Andrzej</a></td>
-                <td>537 570</td>
-                <td>3,05</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/lopuszanski_jan/wb_kd.html">ŁOPUSZAŃSKI Jan</a></td>
-                <td>139 682</td>
-                <td>0,79</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/olechowski_andrzej/wb_kd.html">OLECHOWSKI Andrzej</a>
-                </td>
-                <td>3 044 141</td>
-                <td>17,30</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/pawlowski_bogdan/wb_kd.html">PAWŁOWSKI Bogdan</a></td>
-                <td>17 164</td>
-                <td>0,10</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/walesa_lech/wb_kd.html">WAŁĘSA Lech</a></td>
-                <td>178 590</td>
-                <td>1,01</td>
-            </tr>
-            <tr>
-                <td><a href="http://prezydent2000.pkw.gov.pl/kd/wilecki_tadeusz/wb_kd.html">WILECKI Tadeusz</a></td>
-                <td>28 805</td>
-                <td>0,16</td>
-            </tr>
+            {{wyniki}}
             </tbody>
         </table>
     </article>
 
     <article>
-        <header>
-            <h4>Procentowa liczba głosów dla poszczególnych kandydatów</h4>
-            <hr/>
-        </header>
-        <figure>
-            <img alt="pie-chart" src="Wybory%20Prezydenta%20Rzeczypospolitej%20Polskiej%202000_files/kd.png">
-        </figure>
-
-        <header>
-            <h4>Statystyka ogółem</h4>
-            <hr/>
-        </header>
-        <table>
-            <tbody>
-            <tr>
-                <th>Liczba uprawnionych do głosowania</th>
-                <td>29 122 304</td>
-            </tr>
-            <tr>
-                <th>Liczba wydanych kart do głosowania</th>
-                <td>17 798 791</td>
-            </tr>
-            <tr>
-                <th>Liczba kart wyjętych z urny</th>
-                <td>17 789 231</td>
-            </tr>
-            <tr>
-                <th>Liczba ważnych głosów</th>
-                <td>17 598 919</td>
-            </tr>
-            <tr>
-                <th>Liczba nieważnych głosów</th>
-                <td>190 312</td>
-            </tr>
-            <tr>
-                <th>Frekwencja (%)</th>
-                <td> 61,12</td>
-            </tr>
-            </tbody>
-        </table>
-    </article>
-
-    <article>
-        <header>
-            <h4>Frekwencja</h4>
-            <hr/>
-        </header>
-        <figure>
-            <img src="Wybory%20Prezydenta%20Rzeczypospolitej%20Polskiej%202000_files/pwf.gif" alt="Mapka">
-            <img src="Wybory%20Prezydenta%20Rzeczypospolitej%20Polskiej%202000_files/31.png" alt="Legenda">
-        </figure>
-        <nav>
-            <ul>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/020000.html">WOJ. DOLNOŚLĄSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/040000.html">WOJ. KUJAWSKO-POMORSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/060000.html">WOJ. LUBELSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/080000.html">WOJ. LUBUSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/100000.html">WOJ. ŁÓDZKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/120000.html">WOJ. MAŁOPOLSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/140000.html">WOJ. MAZOWIECKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/160000.html">WOJ. OPOLSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/180000.html">WOJ. PODKARPACKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/200000.html">WOJ. PODLASKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/220000.html">WOJ. POMORSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/240000.html">WOJ. ŚLĄSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/260000.html">WOJ. ŚWIĘTOKRZYSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/280000.html">WOJ. WARMIŃSKO-MAZURSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/300000.html">WOJ. WIELKOPOLSKIE</a></li>
-                <li><a href="http://prezydent2000.pkw.gov.pl/wb/woj/320000.html">WOJ. ZACHODNIOPOMORSKIE</a></li>
-            </ul>
-        </nav>
+        <!--<header>-->
+            <!--<h4>Procentowa liczba gĹosĂłw dla poszczegĂłlnych kandydatĂłw</h4>-->
+            <!--<hr/>-->
+        <!--</header>-->
+        <!--<figure>-->
+            <!--<img alt="pie-chart" src="Wybory%20Prezydenta%20Rzeczypospolitej%20Polskiej%202000_files/kd.png">-->
+        <!--</figure>-->
     </article>
 </main>
 <hr/>

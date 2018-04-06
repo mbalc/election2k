@@ -42,17 +42,17 @@ a {
   color: $link;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 850px) {
   main {
     column-count: 2;
   }
 }
 
-@media (min-width: 2000px) {
-  main {
-    column-count: 3;
-  }
-}
+//@media (min-width: 2000px) {
+//  main {
+//    column-count: 3;
+//  }
+//}
 
 article {
   overflow: hidden;
@@ -60,7 +60,7 @@ article {
   max-width: 960px;
 }
 main {
-  max-width: calc(1000px * 3);
+  max-width: calc(1000px * 2);
   margin: 15px auto;
 }
 
