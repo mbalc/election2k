@@ -32,11 +32,11 @@ def get_empty_args():
 
 
 ARGS_AGGR = []
-for les in range(consts.DEPTH):
+for _ in range(consts.DEPTH):
     ARGS_AGGR.append(get_empty_args())
 
 LINK_AGGR = []
-for les in range(consts.DEPTH):
+for _ in range(consts.DEPTH):
     LINK_AGGR.append(get_empty_set())
 
 
@@ -68,7 +68,6 @@ def process_single(new_path, row):
 
         # output = template_engine.create_webpage(ARGS_AGGR[i], LINK_AGGR[i], [subdirlist, subpath])
         output = template_engine.create_webpage(ARGS_AGGR[i], LINK_AGGR[i], [subdirlist])
-        # print('out: ', output)
         file = open(subpath + "index.html", 'wb')
         file.write(output.encode(consts.UTF))
 
@@ -76,10 +75,8 @@ def process_single(new_path, row):
         LINK_AGGR[i] = set()
 
     nparr = numpy.asarray(args_list)
-    # print(nparr, ARGS_AGGR[0], ARGS_AGGR[0]+nparr)
 
     for i in range(consts.DEPTH):
-        # print(i, '-', ARGS_AGGR[i] + numpy.asarray(args_list))
         ARGS_AGGR[i] += nparr
     for i in range(consts.DEPTH - 1):
         LINK_AGGR[i].add(consts.FORMAT_FOLDER_NAMES[i](new_path[i + 1]))
@@ -92,6 +89,5 @@ def process_single(new_path, row):
 NROWS = config.how_many_rows(main.nrows)
 
 for row_num in range(NROWS):
-    # print(row_num, ": ", ARGS_AGGR)
     process_single(GET_PATH_LIST(row_num), row_num)
 process_single(['dynks'] * consts.DEPTH, NROWS - 1)

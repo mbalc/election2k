@@ -33,7 +33,7 @@ KANDYDACI = [
     "GRABOWSKI Dariusz",
     "IKONOWICZ Piotr",
     "KALINOWSKI Jarosław",
-    "KORWIN-MIKKE Janus",
+    "KORWIN-MIKKE Janusz",
     "KRZAKLEWSKI Maria",
     "KWAŚNIEWSKI Aleksander",
     "LEPPER Andrzej",
@@ -55,7 +55,7 @@ FORMAT_FOLDER_NAMES = [
 
 FORMAT_BUTTON_NAMES = [
     lambda i: i,
-    lambda i: i,
+    lambda _: 'Polska',
     lambda i: i,
     lambda i: i,
     lambda i: i,

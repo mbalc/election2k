@@ -14,13 +14,22 @@ body {
     body > header p {
       margin: 9px 0; }
     body > header :not(nav) {
-      padding-left: 2vw; }
+      padding-left: 3vw; }
     body > header h1 {
       font-weight: lighter;
       font-size: 60px; }
     body > header nav {
       margin-top: 50px;
       font-weight: normal; }
+      body > header nav a, body > header nav span {
+        padding: 16px; }
+  @media (max-width: 850px) {
+    body {
+      font-size: 11px; }
+      body > header {
+        font-size: 12px; }
+        body > header h1 {
+          font-size: 40px; } }
 
 a {
   color: #444; }
@@ -35,7 +44,8 @@ article {
 
 main {
   max-width: calc(1000px * 2);
-  margin: 15px auto; }
+  margin: 0px auto;
+  padding: 0px 38px; }
 
 header h1, header h4 {
   color: #777;
@@ -51,18 +61,24 @@ img {
   border: dotted red; }
 
 footer {
+  background-color: #777;
+  color: #efefef;
   text-align: center;
-  padding: 2vh 0 6vh 0; }
+  padding: 2vh 0 6vh 0;
+  margin-top: 8vh; }
+  footer a {
+    color: #ddd; }
 
 .sortable {
-  border-spacing: 0; }
+  border-spacing: 0;
+  margin: 0 auto; }
 
 .sortable thead td {
   font-weight: bold;
   text-align: center;
   text-transform: uppercase; }
 
-.sortable tbody tr:nth-child(odd) {
+.sortable tbody tr:nth-child(even) {
   background: #e4e4e4; }
 
 .sortable td,

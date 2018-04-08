@@ -1,8 +1,7 @@
+import re
+
 import xlrd
 import xlwt
-
-import os
-import re
 
 import consts
 
@@ -13,7 +12,7 @@ def fetch_mappings():
     first_row, last_row = (consts.ZAL1[k] for k in ('first_row', 'last_row'))
     nr_okr, siedziba = (consts.ZAL1['columns'][k] for k in ('nr_okr', 'siedziba'))
 
-    output = { 'województwa': {}, 'okręgi': {}}
+    output = {'województwa': {}, 'okręgi': {}}
 
     get_nr_okr = lambda row: zal1.cell_value(row, nr_okr)
     get_siedziba = lambda row: zal1.cell_value(row, siedziba)
@@ -21,19 +20,20 @@ def fetch_mappings():
     wojewodztwo_prefix = get_nr_okr(first_row)
     last_wojewodztwo = ''
 
-    def nameof_wojewodztwo(): return consts.NAMEOF_WOJEWODZTWO(last_wojewodztwo)
+    def nameof_wojewodztwo():
+        return consts.NAMEOF_WOJEWODZTWO(last_wojewodztwo)
     nameof_okreg = lambda row: consts.NAMEOF_OKREG(get_siedziba(row), get_nr_okr(row))
 
     woj = 2
 
-    for i in range(first_row, last_row):
-        new_nr = get_nr_okr(i)
+    for idx in range(first_row, last_row):
+        new_nr = get_nr_okr(id)
         if new_nr == wojewodztwo_prefix:
-            last_wojewodztwo = get_siedziba(i)
+            last_wojewodztwo = get_siedziba(idx)
             output['województwa']['%02d' % woj] = nameof_wojewodztwo()
             woj += 2
         else:
-            output['okręgi'][new_nr] = nameof_okreg(i)
+            output['okręgi'][new_nr] = nameof_okreg(idx)
 
     return output
 
@@ -47,8 +47,8 @@ def make_join():
 
     get_woj_code = re.compile(r'^[0-9]{2}')
 
-    for i in range(1, 69):
-        source = xlrd.open_workbook(consts.OBW_PATH + 'obw%02d.xls' % i, 'r').sheet_by_index(0)
+    for obw_id in range(1, 69):
+        source = xlrd.open_workbook(consts.OBW_PATH + 'obw%02d.xls' % obw_id, 'r').sheet_by_index(0)
         for i in range(1, source.nrows):
             row += 1
             for j in range(source.ncols):
