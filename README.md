@@ -1,5 +1,9 @@
 # Elections website
 
+### Preview:
+
+An active [build of the webpage is available here](https://mbalc.github.io/election2k/index.html)
+
 ### Build:
 
 Building the project requires following packages to be installed and available from python 

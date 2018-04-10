@@ -7,7 +7,6 @@ import xlrd
 import xlwt
 
 import consts
-import config
 
 from logger import log, live
 
@@ -18,18 +17,22 @@ NR_OKR, SIEDZIBA = (consts.ZAL1['columns'][k] for k in ('nr_okr', 'siedziba'))
 
 
 def get_siedziba(row):
+    """ - """
     return ZAL1.cell_value(row, SIEDZIBA)
 
 
 def get_nr_okr(row):
+    """ - """
     return ZAL1.cell_value(row, NR_OKR)
 
 
 def nameof_wojewodztwo(last):
+    """ - """
     return consts.NAMEOF_WOJEWODZTWO(last)
 
 
 def nameof_okreg(row):
+    """ - """
     return consts.NAMEOF_OKREG(get_siedziba(row), get_nr_okr(row))
 
 

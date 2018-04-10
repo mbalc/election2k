@@ -17,18 +17,22 @@ HTML_TEMPLATE = ENGINE.from_string(TEMPLATE)
 
 
 def make_field(pole):
+    """ - """
     return '<td>' + str(pole) + '</td>'
 
 
 def make_link(path, title):
+    """ - """
     return '<li><a href="' + path + '/index.html">' + str(title) + '</a></li>'
 
 
 def make_proc(num):
+    """ - """
     return str(100 * num)[:config.PROC_PRECISION] + ' %'
 
 
 def make_button_name(path_list):
+    """ - """
     list_len = len(path_list)
     return consts.FORMAT_BUTTON_NAMES[list_len](path_list[list_len - 1])
 
@@ -74,7 +78,8 @@ def make_results(args):
     kandydaci = list(map(make_field, consts.KANDYDACI))
     glosy = list(map(make_field, args))
     wszystkie = sum(args)
-    if wszystkie <= 0: wszystkie = 1
+    if wszystkie <= 0:
+        wszystkie = 1
     procenty = list(map(lambda x: make_field(make_proc(x / wszystkie)), args))
 
     wyniki = ''

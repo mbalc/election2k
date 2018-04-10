@@ -12,22 +12,26 @@ import template_engine
 
 from logger import log, live
 
-main = xlrd.open_workbook(consts.FULLJOIN_PATH, 'r').sheet_by_index(0)
+MAIN_WB = xlrd.open_workbook(consts.FULLJOIN_PATH, 'r').sheet_by_index(0)
 
 
 def get_path_list(row):
-    return list(map(lambda i: (main.cell_value(row, i)), consts.PATH_INDICES))
+    """ - """
+    return list(map(lambda i: (MAIN_WB.cell_value(row, i)), consts.PATH_INDICES))
 
 
 def get_args_list(row):
-    return list(map(lambda i: (main.cell_value(row, i)), consts.ARGS_INDICES))
+    """ - """
+    return list(map(lambda i: (MAIN_WB.cell_value(row, i)), consts.ARGS_INDICES))
 
 
 def get_empty_set():
+    """ - """
     return set()
 
 
 def get_empty_args():
+    """ - """
     return numpy.zeros(len(consts.ARGS_INDICES), dtype='int')
 
 
@@ -46,8 +50,8 @@ def create_directory(path):
     """Creates folders that lead to path specified by argument and return path string"""
     aggr = ''
 
-    for path, formatter in zip([config.GEN_PATH] + path[1:], consts.FORMAT_FOLDER_NAMES[1:]):
-        aggr = os.path.join(aggr, formatter(path))
+    for elem, formatter in zip([config.GEN_PATH] + path[1:], consts.FORMAT_FOLDER_NAMES[1:]):
+        aggr = os.path.join(aggr, formatter(elem))
 
         if not os.path.isdir(aggr):
             os.mkdir(aggr)
@@ -87,14 +91,14 @@ def process_single(new_path, row):
     PATH_LIST = new_path
 
 
-ROW_NUMS = config.rows_to_process(main.nrows)
+ROW_NUMS = config.rows_to_process(MAIN_WB.nrows)
 
 log('Writing in path ', config.GEN_PATH)
 
 for row_num in ROW_NUMS:
     process_single(get_path_list(row_num), row_num)
 
-process_single(['uniqueString'] * consts.DEPTH, row_num)
+process_single(['uniqueString'] * consts.DEPTH, ROW_NUMS[-1])
 
 shutil.copy(consts.STYLESHEET_PATH, config.GEN_PATH)
 
