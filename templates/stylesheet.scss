@@ -38,7 +38,8 @@ body {
       font-weight: normal;
 
       a, span {
-        padding: 16px;
+        padding: 8px;
+        display: inline-block;
       }
     }
   }
@@ -75,12 +76,14 @@ article {
   overflow: hidden;
   margin: 0 8px;
   max-width: 960px;
+  flex: 1 0 250px;
 }
 main {
-  max-width: calc(1000px * 2);
-  margin: 0px auto;
-  padding: 0px 38px;
-  column-fill: auto;
+  margin: 0 auto;
+  padding: 0 38px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 header {
