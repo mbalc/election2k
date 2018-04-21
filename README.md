@@ -1,8 +1,14 @@
-# Elections website ![Shippable](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg)
+# Elections website
+![Shippable](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg)
 
 ### Preview:
 
+[![Webpage Preview](./assets/screenshot.jpg)](https://mbalc.github.io/election2k/index.html)
+
+Above screen was made possible thanks to [MagicMockups](http://magicmockups.com/)
+
 An active [build of the webpage is available here](https://mbalc.github.io/election2k/index.html)
+
 
 ### Build:
 
