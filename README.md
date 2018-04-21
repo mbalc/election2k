@@ -5,9 +5,9 @@
 
 [![Webpage Preview](./assets/screenshot.jpg)](https://mbalc.github.io/election2k/index.html)
 
-Above screen was made possible thanks to [MagicMockups](http://magicmockups.com/)
-
 An active [build of the webpage is available here](https://mbalc.github.io/election2k/index.html)
+
+Above screen was made possible thanks to [MagicMockups](http://magicmockups.com/)
 
 
 ### Build:
