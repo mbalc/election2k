@@ -45,7 +45,8 @@ article {
 main {
   max-width: calc(1000px * 2);
   margin: 0px auto;
-  padding: 0px 38px; }
+  padding: 0px 38px;
+  column-fill: auto; }
 
 header h1, header h4 {
   color: #777;
